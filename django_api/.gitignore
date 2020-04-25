@@ -1,1 +1,2 @@
 django_api/private_settings.py
+db.sqlite3
