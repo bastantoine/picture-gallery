@@ -1,3 +1,9 @@
 # virtual envs
 *venv*/**
 start.sh
+
+#VS Code
+**/.vscode/*
+
+#Python
+*.pyc
