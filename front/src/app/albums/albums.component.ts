@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable } from "rxjs";
+
 import { Album } from "../models";
+import { AlbumsService } from "../albums.service";
 
 @Component({
   selector: 'app-albums',
@@ -9,20 +12,16 @@ import { Album } from "../models";
 })
 export class AlbumsComponent implements OnInit {
 
-  albums: Album[] = [];
+  albums: Observable<Album[]>;
 
-  constructor() { }
+  constructor(private albumsService: AlbumsService) { }
 
   ngOnInit(): void {
-    let description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
-    for (let i = 1; i <= 30; i++) {
-      this.albums.push(
-        new Album(
-          i, `Album ${i}`, new Date(2020, 4, 26),
-          i%5 == 0 ? description : ''
-        )
-      )
-    }
+    this.getAllAlbums();
+  }
+
+  getAllAlbums(): void {
+    this.albums = this.albumsService.getAllAlbums();
   }
 
 }
