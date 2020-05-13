@@ -16,7 +16,9 @@ import os
 from django_api.private_settings import (
     SECRET_KEY,
     ALLOWED_HOSTS,
-    CORS_ORIGIN_WHITELIST
+    CORS_ORIGIN_WHITELIST,
+    MEDIA_ROOT,
+    MEDIA_URL,
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

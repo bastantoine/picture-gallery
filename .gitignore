@@ -2,8 +2,11 @@
 *venv*/**
 start.sh
 
-#VS Code
+# VS Code
 **/.vscode/*
 
-#Python
+# Python
 *.pyc
+
+# Media files
+media/*
