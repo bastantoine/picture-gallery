@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+# pylint: disable=unused-import
 from django_api.private_settings import (
     SECRET_KEY,
-    ALLOWED_HOSTS
+    ALLOWED_HOSTS,
+    CORS_ORIGIN_WHITELIST
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -39,12 +41,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
-    'rest_framework'
+    'rest_framework',
+    'corsheaders'
 ]
+
+# corsheaders : App from https://github.com/adamchainz/django-cors-headers,
+# allows to add Cross-Origin Resource Sharing (CORS) headers to responses, to
+# allow making API calls when API and/or front are in dev mode and not using
+# the same entry port
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

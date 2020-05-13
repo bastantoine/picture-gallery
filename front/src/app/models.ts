@@ -1,24 +1,25 @@
 export class Album {
     id: number;
     name: string;
-    description: string;
+    url: string;
     start_date: Date;
+    description: string;
     end_date: Date;
-    parent_album: Album;
 
-    constructor(id: number,
-                name: string,
-                start_date: Date,
-                description?: string,
-                end_date?: Date,
-                parent_album?: Album) {
-        this.id = id;
-        this.name = name;
-        this.start_date = start_date;
-        this.description = description ? description : '';
-        this.end_date = end_date ? end_date : null;
-        this.parent_album = parent_album ? parent_album : null;
-    }
+    constructor(
+        id: number,
+        name: string,
+        url: string,
+        start_date: Date,
+        description?: string,
+        end_date?: Date) {
+            this.id = id;
+            this.name = name;
+            this.url = url;
+            this.start_date = start_date;
+            this.description = description ? description : '';
+            this.end_date = end_date ? end_date : null;
+        }
 }
 
 export class Picture {
