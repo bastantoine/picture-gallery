@@ -6,15 +6,14 @@ from api.models import (
 )
 
 
-class AlbumSerializer(serializers.HyperlinkedModelSerializer):
+class AlbumSerializer(serializers.ModelSerializer):
 
-    id = serializers.IntegerField(read_only=True)
     class Meta:
         model = Album
         fields = '__all__'
 
 
-class PictureSerializer(serializers.HyperlinkedModelSerializer):
+class PictureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Picture
