@@ -5,6 +5,7 @@ export class Album {
     start_date: Date;
     description: string;
     end_date: Date;
+    pictures: Picture[];
 
     constructor(
         id: number,
