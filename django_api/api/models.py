@@ -20,4 +20,8 @@ class Album(models.Model):
 class Picture(models.Model):
 
     path = models.ImageField()
-    album = models.ForeignKey('Album', on_delete=models.CASCADE)
+    # related_name is used here to add the pictures of an album in its serializer
+    album = models.ForeignKey('Album',
+                              on_delete=models.CASCADE,
+                              related_name='pictures'
+                             )
