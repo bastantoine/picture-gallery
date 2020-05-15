@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+
+import { Album } from "../models";
+import { AlbumsService } from "../albums.service";
 
 @Component({
   selector: 'app-album-detail',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlbumDetailComponent implements OnInit {
 
-  constructor() { }
+  album: Album;
+
+  constructor(
+    private route: ActivatedRoute,
+    private albumService: AlbumsService
+  ) { }
 
   ngOnInit(): void {
+    this.album = new Album(0, '', '', new Date())
+    this.getAlbum(0)
+  }
+
+  getAlbum(id: number): void {
+    id = +this.route.snapshot.paramMap.get('id');
+    this.albumService.getAlbumById(id)
+      .subscribe(
+        album => this.album = new Album(
+          album['id'],
+          album['name'],
+          album['url'],
+          new Date(album['start_date']),
+          album['description'],
+          new Date(album['end_date']),
+        ),
+        err => console.error('There has been an error: ' + err)
+      );
   }
 
 }
