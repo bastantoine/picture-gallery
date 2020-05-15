@@ -26,11 +26,11 @@ export class Album {
 export class Picture {
     id: number;
     path: string;
-    album: Album;
+    album: number;
 
     constructor(id: number,
                 path: string,
-                album: Album) {
+                album: number) {
         this.id = id;
         this.path = path;
         this.album = album;
