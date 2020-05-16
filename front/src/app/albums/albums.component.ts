@@ -38,9 +38,6 @@ export class AlbumsComponent implements OnInit {
             console.log(this.albums[0].constructor.name);
         },
         err => console.error('There has been an error: ' + err),
-        () => {
-          console.log('Complete');
-        }
       );
   }
 
