@@ -1,7 +1,7 @@
 <div class="card-columns">
     <div *ngFor="let album of albums" class="card" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">{{album.name}}</h5>
+            <a routerLink="/album/{{album.id}}"><h5 class="card-title">{{album.name}}</h5></a>
             <p class="card-text">{{album.description}}</p>
         </div>
         <div class="card-footer">{{album.start_date}}</div>
