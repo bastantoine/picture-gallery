@@ -6,13 +6,14 @@ import { catchError } from "rxjs/operators";
 
 import { Album } from "./models";
 import { endpoint } from "./api-config";
+import { join } from "./utils";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlbumsService {
 
-  private albumUrl = `${endpoint}api/albums/`;
+  private albumUrl = join(endpoint, 'api', 'albums');
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class AlbumsService {
   }
 
   getAlbumById(id: number): Observable<Album> {
-    return this.http.get<Album>(`${this.albumUrl}${id}/`).pipe(
+    return this.http.get<Album>(join(this.albumUrl, id.toString())).pipe(
       catchError(this.handleError)
     )
   }
