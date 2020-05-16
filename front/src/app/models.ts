@@ -12,6 +12,7 @@ export class Album {
         name: string,
         url: string,
         start_date: Date,
+        pictures: any[],
         description?: string,
         end_date?: Date) {
             this.id = id;
@@ -20,7 +21,21 @@ export class Album {
             this.start_date = start_date;
             this.description = description ? description : '';
             this.end_date = end_date ? end_date : null;
+            this.pictures = [];
+            this.init_pictures(pictures);
         }
+
+    private init_pictures(pictures_array: any[]): void {
+        pictures_array.forEach(picture =>
+            this.pictures.push(
+                new Picture(
+                    picture['id'],
+                    picture['path'],
+                    picture['album']
+                )
+            )
+        )
+    }
 }
 
 export class Picture {

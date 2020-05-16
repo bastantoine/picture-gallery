@@ -30,10 +30,11 @@ export class AlbumsComponent implements OnInit {
               album['id'],
               album['name'],
               album['url'],
-              new Date(album['start_date']),
+              album['start_date'],
+              album['pictures'],
               album['description'],
-              new Date(album['end_date']),
-              )))
+              album['end_date'],
+            )))
             console.log(this.albums[0].constructor.name);
         },
         err => console.error('There has been an error: ' + err),
