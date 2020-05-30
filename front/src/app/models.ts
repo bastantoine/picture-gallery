@@ -6,6 +6,7 @@ export class Album {
     description: string;
     end_date: Date;
     pictures: Picture[];
+    thumbnail: Picture;
 
     constructor(
         id: number,
@@ -23,6 +24,7 @@ export class Album {
             this.end_date = end_date ? end_date : null;
             this.pictures = [];
             this.init_pictures(pictures);
+            this.thumbnail = this.pictures[0];
         }
 
     private init_pictures(pictures_array: any[]): void {
