@@ -5,6 +5,8 @@
     </div>
     <div class="card-footer">{{album.start_date}}</div>
 </div>
-<div *ngFor='let picture of album.pictures'>
-    <img src="{{picture.path}}" alt="" width="500px">
+<div class="card-columns">
+  <div class="card" *ngFor='let picture of album.pictures'>
+    <img src="{{picture.path}}" class="card-img-top" alt="" width="500px">
+  </div>
 </div>
