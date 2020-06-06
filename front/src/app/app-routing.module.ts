@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'home', component: AlbumsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'album/:id', component: AlbumDetailComponent },
+  { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
 

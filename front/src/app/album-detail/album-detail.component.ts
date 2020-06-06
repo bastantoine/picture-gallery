@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { Album } from "../models";
 import { AlbumsService } from "../albums.service";
@@ -14,6 +14,7 @@ export class AlbumDetailComponent implements OnInit {
   album: Album;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private albumService: AlbumsService
   ) { }
@@ -36,7 +37,10 @@ export class AlbumDetailComponent implements OnInit {
           album['description'],
           new Date(album['end_date']),
         ),
-        err => console.error('There has been an error: ' + err)
+        err => {
+          console.error('There has been an error: ' + err),
+          this.router.navigate(['/not-found']);
+        }
       );
   }
 
