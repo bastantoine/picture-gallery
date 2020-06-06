@@ -1,3 +1,5 @@
+import { formatDate } from "@angular/common";
+
 export class Album {
     id: number;
     name: string;
@@ -37,6 +39,41 @@ export class Album {
                 )
             )
         )
+    }
+
+    public format_start_end_date(): string {
+        let format_year = 'yyyy';
+        let format_month = 'MM';
+        let format_day = 'dd';
+        // So far only the en-US is supported, we'll see later for localization
+        let locale = 'en-US';
+        if(this.end_date === null || this.start_date === this.end_date) {
+            // end_date not defined or exact same start and end date
+            return formatDate(this.start_date, `${format_day}/${format_month}/${format_year}`, locale)
+        }
+        if(this.start_date.getFullYear() === this.end_date.getFullYear()) {
+            // Same year
+            if(this.start_date.getMonth() === this.end_date.getMonth()) {
+                // Same month
+                return formatDate(this.start_date,  format_day, locale)
+                     + ' - '
+                     + formatDate(this.end_date, format_day, locale)
+                     + '/'
+                     + formatDate(this.start_date, `${format_month}/${format_year}`, locale)
+            } else {
+                // Different month
+                return formatDate(this.start_date, `${format_day}/${format_month}`, locale)
+                     + ' - '
+                     + formatDate(this.end_date, `${format_day}/${format_month}`, locale)
+                     + '/'
+                     + formatDate(this.start_date, format_year, locale)
+            }
+        } else {
+            // Completely different dates
+            return formatDate(this.start_date, `${format_day}/${format_month}/${format_year}`, locale)
+                 + ' - '
+                 + formatDate(this.start_date, `${format_day}/${format_month}/${format_year}`, locale)
+        }
     }
 }
 

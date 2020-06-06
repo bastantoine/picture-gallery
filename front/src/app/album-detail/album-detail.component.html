@@ -3,7 +3,7 @@
         <h5 class="card-title">{{album.name}}</h5>
         <p class="card-text">{{album.description}}</p>
     </div>
-    <div class="card-footer">{{album.start_date}}</div>
+    <div class="card-footer">{{album.format_start_end_date()}}</div>
 </div>
 <div class="card-columns">
   <div class="card" *ngFor='let picture of album.pictures'>
