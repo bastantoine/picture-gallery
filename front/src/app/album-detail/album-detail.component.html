@@ -1,7 +1,7 @@
 <div class="mb-3">
   <h3 class="mx-auto mb-0 album-title-block-item">{{album.name}}</h3>
   <p class="mx-auto album-title-block-item">{{album.format_start_end_date()}}</p>
-  <p class="mx-auto lead album-description album-title-block-item">{{album.description}}</p>
+  <p *ngIf="album.description" class="mx-auto lead album-description album-title-block-item">{{album.description}}</p>
 </div>
 <div>
   <div class="card-columns">
