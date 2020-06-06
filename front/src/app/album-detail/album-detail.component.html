@@ -1,12 +1,12 @@
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">{{album.name}}</h5>
-        <p class="card-text">{{album.description}}</p>
-    </div>
-    <div class="card-footer">{{album.format_start_end_date()}}</div>
+<div class="mb-3">
+  <h3 class="mx-auto mb-0 album-title-block-item">{{album.name}}</h3>
+  <p class="mx-auto album-title-block-item">{{album.format_start_end_date()}}</p>
+  <p class="mx-auto lead album-description album-title-block-item">{{album.description}}</p>
 </div>
-<div class="card-columns">
-  <div class="card" *ngFor='let picture of album.pictures'>
-    <img src="{{picture.path}}" class="card-img-top" alt="" width="500px">
+<div>
+  <div class="card-columns">
+    <div class="card" *ngFor='let picture of album.pictures'>
+      <img src="{{picture.path}}" class="card-img-top" alt="" width="500px">
+    </div>
   </div>
 </div>
