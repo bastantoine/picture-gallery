@@ -19,9 +19,9 @@ export class Album {
             this.id = id;
             this.name = name;
             this.url = url;
-            this.start_date = start_date;
+            this.start_date = new Date(start_date);
             this.description = description ? description : '';
-            this.end_date = end_date ? end_date : null;
+            this.end_date = end_date ? new Date(end_date) : null;
             this.pictures = [];
             this.init_pictures(pictures);
             this.thumbnail = this.pictures[0];
