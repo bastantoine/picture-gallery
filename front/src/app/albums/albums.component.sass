@@ -1,0 +1,22 @@
+@import "node_modules/bootstrap/scss/functions"
+@import "node_modules/bootstrap/scss/variables"
+@import "node_modules/bootstrap/scss/mixins/_breakpoints"
+
+// Definitions of the number of columns for each media breakpoint:
+// - lg and xl: 3
+// - md: 2
+// - sm and xs: 1
+
+.card-columns
+    @include media-breakpoint-up(lg)
+        column-count: 3
+
+    @include media-breakpoint-only(md)
+        column-count: 2
+
+    @include media-breakpoint-down(sm)
+        column-count: 1
+
+div.card-body
+    a
+        color: inherit
