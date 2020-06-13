@@ -21,11 +21,11 @@ export class AlbumDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.album = new Album(0, '', '', new Date(), [])
-    this.getAlbum(0)
+    this.getAlbum()
   }
 
-  getAlbum(id: number): void {
-    id = +this.route.snapshot.paramMap.get('id');
+  getAlbum(): void {
+    let id = +this.route.snapshot.paramMap.get('id');
     this.albumService.getAlbumById(id)
       .subscribe(
         album => this.album = new Album(
