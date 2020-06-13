@@ -35,8 +35,7 @@ export class AlbumsComponent implements OnInit {
               album['description'],
               album['end_date'],
             )))
-        },
-        err => console.error('There has been an error: ' + err),
+        }
       );
   }
 

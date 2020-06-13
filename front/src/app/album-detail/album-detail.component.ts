@@ -37,10 +37,7 @@ export class AlbumDetailComponent implements OnInit {
           album['description'],
           new Date(album['end_date']),
         ),
-        err => {
-          console.error('There has been an error: ' + err),
-          this.router.navigate(['/not-found']);
-        }
+        err => this.router.navigate(['/not-found'])
       );
   }
 
