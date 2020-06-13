@@ -49,6 +49,8 @@ class ExifsView(View):
             'EXIF ApertureValue': 'apperture',
             # ISO
             'EXIF ISOSpeedRatings': 'ISO',
+            # Focal length
+            'EXIF FocalLength': 'focal_length',
         }
         picture = get_object_or_404(Picture, pk=id_picture)
         tags = exifread.process_file(picture.path)

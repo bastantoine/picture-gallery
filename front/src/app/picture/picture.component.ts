@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { PictureService } from "../pictures.service";
-import { Picture } from "../models";
+import { ExifsService } from "../exifs.service";
+import { Picture, Exifs } from "../models";
 
 @Component({
   selector: 'app-picture',
@@ -12,20 +13,23 @@ import { Picture } from "../models";
 export class PictureComponent implements OnInit {
 
   picture: Picture;
+  exifs: Exifs;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private pictureService: PictureService
+    private pictureService: PictureService,
+    private exifsService: ExifsService
   ) { }
 
   ngOnInit(): void {
     this.picture = new Picture(0, '', 0);
-    this.getPicture();
+    let id = +this.route.snapshot.paramMap.get('id');
+    this.getPicture(id);
+    this.getExifs(id);
   }
 
-  getPicture(): void {
-    let id = +this.route.snapshot.paramMap.get('id');
+  getPicture(id: number): void {
     this.pictureService.getPictureById(id)
       .subscribe(
         picture => this.picture = new Picture(
@@ -34,6 +38,22 @@ export class PictureComponent implements OnInit {
           picture['album']
         ),
         () => this.router.navigate(['/not-found'])
+      );
+  }
+
+  getExifs(id: number): void {
+    this.exifsService.getExifsOfPicture(id)
+      .subscribe(
+        exifs => this.exifs = new Exifs(
+          exifs['camera_constructor'],
+          exifs['camera_model'],
+          exifs['lens'],
+          exifs['exposure_time'],
+          exifs['apperture'],
+          exifs['ISO'],
+          exifs['focal_length']
+        ),
+        err => console.log(err)
       );
   }
 
