@@ -37,7 +37,7 @@ export class AlbumDetailComponent implements OnInit {
           album['description'],
           new Date(album['end_date']),
         ),
-        err => this.router.navigate(['/not-found'])
+        () => this.router.navigate(['/not-found'])
       );
   }
 

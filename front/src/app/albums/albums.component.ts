@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 import { Album } from "../models";
 import { AlbumsService } from "../albums.service";
@@ -12,7 +13,10 @@ export class AlbumsComponent implements OnInit {
 
   albums: Album[];
 
-  constructor(private albumsService: AlbumsService) { }
+  constructor(
+    private router: Router,
+    private albumsService: AlbumsService
+  ) { }
 
   ngOnInit(): void {
     this.albums = [];
@@ -33,7 +37,8 @@ export class AlbumsComponent implements OnInit {
               album['description'],
               album['end_date'],
             )))
-        }
+        },
+        () => this.router.navigate(['/not-found'])
       );
   }
 
