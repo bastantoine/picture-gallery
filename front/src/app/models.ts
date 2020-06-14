@@ -109,8 +109,8 @@ export class Exifs {
             ISO: string,
             focal_length: string
         ) {
-            this.camera_constructor = camera_constructor;
             this.camera_model = camera_model;
+            this.camera_constructor = this.camera_model.startsWith(camera_constructor) ? '' : camera_constructor;
             this.lens = lens;
             this.exposure_time = exposure_time;
             this.apperture = apperture;
