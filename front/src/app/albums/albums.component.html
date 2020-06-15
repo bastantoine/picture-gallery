@@ -2,7 +2,7 @@
     <div *ngFor="let album of albums" class="card" style="width: 18rem;">
         <img src="{{album.thumbnail.path}}" class="card-img-top">
         <div class="card-body">
-            <a routerLink="/album/{{album.id}}"><h5 class="card-title">{{album.name}}</h5></a>
+            <a routerLink="/album/{{album.id}}" class="stretched-link"><h5 class="card-title">{{album.name}}</h5></a>
             <p class="card-text">{{album.description}}</p>
         </div>
         <div class="card-footer">{{album.format_start_end_date()}}</div>
