@@ -23,7 +23,7 @@ export class PictureComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.picture = new Picture(0, '', 0);
+    this.picture = new Picture(-1, '', -1);
     let id = +this.route.snapshot.paramMap.get('id');
     this.getPicture(id);
     this.getExifs(id);

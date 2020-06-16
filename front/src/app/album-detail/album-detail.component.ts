@@ -20,7 +20,7 @@ export class AlbumDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.album = new Album(0, '', '', new Date(), [])
+    this.album = new Album(-1, '', '', new Date(), [])
     this.getAlbum()
   }
 
