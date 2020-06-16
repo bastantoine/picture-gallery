@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { PictureService } from "../pictures.service";
+import { AlbumsService } from "../albums.service";
 import { ExifsService } from "../exifs.service";
 import { Picture, Exifs } from "../models";
 
@@ -14,16 +15,19 @@ export class PictureComponent implements OnInit {
 
   picture: Picture;
   exifs: Exifs;
+  albumName: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private pictureService: PictureService,
+    private albumService: AlbumsService,
     private exifsService: ExifsService
   ) { }
 
   ngOnInit(): void {
     this.picture = new Picture(-1, '', -1);
+    this.albumName = '';
     let id = +this.route.snapshot.paramMap.get('id');
     this.getPicture(id);
     this.getExifs(id);
@@ -32,11 +36,14 @@ export class PictureComponent implements OnInit {
   getPicture(id: number): void {
     this.pictureService.getPictureById(id)
       .subscribe(
-        picture => this.picture = new Picture(
-          picture['id'],
-          picture['path'],
-          picture['album']
-        ),
+        picture => {
+          this.picture = new Picture(
+            picture['id'],
+            picture['path'],
+            picture['album']
+          );
+          this.getAlbumName();
+        },
         () => this.router.navigate(['/not-found'])
       );
   }
@@ -55,6 +62,14 @@ export class PictureComponent implements OnInit {
         ),
         err => console.log(err)
       );
+  }
+
+  getAlbumName(): void {
+    if(this.albumName === '') {
+      // We have already fetched the picture infos so it's safe to use them to get the album name
+      this.albumService.getAlbumById(this.picture.album)
+        .subscribe(album => this.albumName = album['name'])
+    }
   }
 
 }
