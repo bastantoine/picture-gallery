@@ -7,10 +7,10 @@ from api.views import (
     ExifsView
 )
 
-router = routers.SimpleRouter()
-router.register(r'albums', AlbumViewSet)
-router.register(r'pictures', PictureViewSet)
-urlpatterns = router.urls
+ROUTER = routers.SimpleRouter()
+ROUTER.register(r'albums', AlbumViewSet)
+ROUTER.register(r'pictures', PictureViewSet)
+urlpatterns = ROUTER.urls
 
 urlpatterns += [
     path('exifs/<int:id_picture>', ExifsView.as_view()),
