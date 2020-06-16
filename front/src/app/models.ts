@@ -118,3 +118,16 @@ export class Exifs {
         this.focal_length = focal_length;
     }
 }
+
+export class AlbumUUID {
+    album: number;
+    uuid: string;
+
+    constructor(
+        album: number,
+        uuid: string
+    ) {
+        this.album = album;
+        this.uuid = uuid;
+    }
+}
