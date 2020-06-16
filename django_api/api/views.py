@@ -6,11 +6,12 @@ from rest_framework import viewsets
 
 from api.models import (
     Album,
-    Picture
+    Picture,
+    AlbumUUID,
 )
 from api.serializers import (
     AlbumSerializer,
-    PictureSerializer
+    PictureSerializer,
 )
 
 
@@ -26,6 +27,24 @@ class PictureViewSet(viewsets.ModelViewSet):
 
     queryset = Picture.objects.all()
     serializer_class = PictureSerializer
+
+
+class AlbumUUIDView(View):
+
+    def get(self, request, id_album=None, uuid=None):
+        if not id_album and not uuid:
+            # This shouldn't happen, but just in case
+            return JsonResponse({})
+
+        if id_album:
+            param = {'album__exact': id_album}
+        else:
+            param = {'pk': uuid}
+        album_uuid_obj = get_object_or_404(AlbumUUID, **param)
+        return JsonResponse({
+            'uuid': album_uuid_obj.uuid,
+            'album': album_uuid_obj.album.id
+        })
 
 
 class ExifsView(View):

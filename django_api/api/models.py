@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 
 
@@ -15,6 +17,12 @@ class Album(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class AlbumUUID(models.Model):
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE)
 
 
 class Picture(models.Model):
