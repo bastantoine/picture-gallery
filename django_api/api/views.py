@@ -3,7 +3,6 @@ from django.views import View
 from django.shortcuts import get_object_or_404
 import exifread
 from rest_framework import viewsets
-from rest_framework import permissions
 
 from api.models import (
     Album,
@@ -20,7 +19,6 @@ class AlbumViewSet(viewsets.ModelViewSet):
 
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 # pylint: disable=too-many-ancestors
@@ -28,7 +26,6 @@ class PictureViewSet(viewsets.ModelViewSet):
 
     queryset = Picture.objects.all()
     serializer_class = PictureSerializer
-    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class ExifsView(View):
@@ -54,5 +51,8 @@ class ExifsView(View):
         }
         picture = get_object_or_404(Picture, pk=id_picture)
         tags = exifread.process_file(picture.path)
-        formatted_values = {api_key: str(tags.get(exif_key, '')) for exif_key, api_key in keys.items()}
+        formatted_values = {
+            api_key: str(tags.get(exif_key, ''))
+            for exif_key, api_key in keys.items()
+        }
         return JsonResponse(formatted_values)
