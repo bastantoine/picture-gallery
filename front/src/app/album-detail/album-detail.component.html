@@ -1,6 +1,6 @@
 <div class="mb-3 row">
   <div class="col-sm-1">
-    <i class="fas fa-arrow-left" routerLink=""></i>
+    <span class="material-icons" routerLink="/">arrow_back</span>
   </div>
   <div class="col-sm-11">
     <h3 class="mx-auto mb-0 album-title-block-item">{{album.name}}</h3>
@@ -11,7 +11,7 @@
 <div>
   <div class="card-columns">
     <div class="card" *ngFor='let picture of album.pictures'>
-      <img src="{{picture.path}}" class="card-img-top" alt="" width="500px">
+      <a routerLink="/picture/{{picture.id}}"><img src="{{picture.path}}" class="card-img-top" alt="" width="500px"></a>
     </div>
   </div>
 </div>

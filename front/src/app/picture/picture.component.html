@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-lg-9">
+        <img src="{{picture.path}}">
+    </div>
+    <div class="col-lg-3">
+        <div>
+            <span class="float-left material-icons" routerLink="/">arrow_back</span>
+            <h3 class="text-right mb-4">{{albumName}}</h3>
+        </div>
+        <div *ngIf="exifs !== undefined">
+            <ul class="exifs-list">
+                <li>
+                    <span class="material-icons">photo_camera</span> <span class="align-top">
+                        {{exifs.camera_constructor}} {{exifs.camera_model}}
+                        <br/>{{exifs.lens}}
+                    </span>
+                </li>
+                <li><span class="material-icons">timer</span> <span class="align-top">{{exifs.exposure_time}}s</span></li>
+                <li><span class="material-icons">tonality</span> <span class="align-top">f/{{exifs.apperture}}</span></li>
+                <li><span class="material-icons">iso</span> <span class="align-top">{{exifs.ISO}} ISO</span></li>
+                <li><span class="material-icons">switch_video</span> <span class="align-top">{{exifs.focal_length}}mm</span></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -90,3 +90,31 @@ export class Picture {
         this.album = album;
     }
 }
+
+export class Exifs {
+        camera_constructor: string;
+        camera_model: string;
+        lens: string;
+        exposure_time: string;
+        apperture: string;
+        ISO: string;
+        focal_length: string;
+
+        constructor(
+            camera_constructor: string,
+            camera_model: string,
+            lens: string,
+            exposure_time: string,
+            apperture: string,
+            ISO: string,
+            focal_length: string
+        ) {
+            this.camera_model = camera_model;
+            this.camera_constructor = this.camera_model.startsWith(camera_constructor) ? '' : camera_constructor;
+            this.lens = lens;
+            this.exposure_time = exposure_time;
+            this.apperture = apperture;
+            this.ISO = ISO;
+            this.focal_length = focal_length;
+        }
+}
