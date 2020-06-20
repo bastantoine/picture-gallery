@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'album/:id', component: AlbumDetailComponent, data: { type: 'id' } },
   { path: 'album/u/:uuid', component: AlbumDetailComponent, data: { type: 'uuid' } },
-  { path: 'picture/:id', component: PictureComponent },
+  { path: 'picture/:id', component: PictureComponent, data: { type: 'id' } },
+  { path: 'picture/u/:uuid', component: PictureComponent, data: { type: 'uuid' } },
   { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
 ];

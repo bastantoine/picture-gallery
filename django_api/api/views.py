@@ -11,6 +11,7 @@ from api.models import (
     Album,
     Picture,
     AlbumUUID,
+    PictureUUID
 )
 from api.serializers import (
     AlbumSerializer,
@@ -47,6 +48,24 @@ class AlbumUUIDView(View):
         return JsonResponse({
             'uuid': album_uuid_obj.uuid,
             'album': album_uuid_obj.album.id
+        })
+
+
+class PictureUUIDView(View):
+
+    def get(self, request, id_picture=None, uuid=None):
+        if not id_picture and not uuid:
+            # This shouldn't happen, but just in case
+            return JsonResponse({})
+
+        if uuid:
+            picture_uuid_obj = get_object_or_404(PictureUUID, pk=uuid)
+            return redirect('picture-detail', pk=picture_uuid_obj.picture.id)
+
+        picture_uuid_obj = get_object_or_404(PictureUUID, picture__exact=id_picture)
+        return JsonResponse({
+            'uuid': picture_uuid_obj.uuid,
+            'picture': picture_uuid_obj.picture.id
         })
 
 

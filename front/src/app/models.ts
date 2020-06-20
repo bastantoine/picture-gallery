@@ -131,3 +131,16 @@ export class AlbumUUID {
         this.uuid = uuid;
     }
 }
+
+export class PictureUUID {
+    picture: number;
+    uuid: string;
+
+    constructor(
+        picture: number,
+        uuid: string
+    ) {
+        this.picture = picture;
+        this.uuid = uuid;
+    }
+}
