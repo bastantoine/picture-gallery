@@ -1,16 +1,20 @@
 from django.http import JsonResponse
 from django.views import View
-from django.shortcuts import get_object_or_404
+from django.shortcuts import (
+    get_object_or_404,
+    redirect
+)
 import exifread
 from rest_framework import viewsets
 
 from api.models import (
     Album,
-    Picture
+    Picture,
+    AlbumUUID,
 )
 from api.serializers import (
     AlbumSerializer,
-    PictureSerializer
+    PictureSerializer,
 )
 
 
@@ -26,6 +30,24 @@ class PictureViewSet(viewsets.ModelViewSet):
 
     queryset = Picture.objects.all()
     serializer_class = PictureSerializer
+
+
+class AlbumUUIDView(View):
+
+    def get(self, request, id_album=None, uuid=None):
+        if not id_album and not uuid:
+            # This shouldn't happen, but just in case
+            return JsonResponse({})
+
+        if uuid:
+            album_uuid_obj = get_object_or_404(AlbumUUID, pk=uuid)
+            return redirect('album-detail', pk=album_uuid_obj.album.id)
+
+        album_uuid_obj = get_object_or_404(AlbumUUID, album__exact=id_album)
+        return JsonResponse({
+            'uuid': album_uuid_obj.uuid,
+            'album': album_uuid_obj.album.id
+        })
 
 
 class ExifsView(View):
