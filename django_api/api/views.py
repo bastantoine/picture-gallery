@@ -1,6 +1,9 @@
 from django.http import JsonResponse
 from django.views import View
-from django.shortcuts import get_object_or_404
+from django.shortcuts import (
+    get_object_or_404,
+    redirect
+)
 import exifread
 from rest_framework import viewsets
 
@@ -36,11 +39,11 @@ class AlbumUUIDView(View):
             # This shouldn't happen, but just in case
             return JsonResponse({})
 
-        if id_album:
-            param = {'album__exact': id_album}
-        else:
-            param = {'pk': uuid}
-        album_uuid_obj = get_object_or_404(AlbumUUID, **param)
+        if uuid:
+            album_uuid_obj = get_object_or_404(AlbumUUID, pk=uuid)
+            return redirect('album-detail', pk=album_uuid_obj.album.id)
+
+        album_uuid_obj = get_object_or_404(AlbumUUID, album__exact=id_album)
         return JsonResponse({
             'uuid': album_uuid_obj.uuid,
             'album': album_uuid_obj.album.id
