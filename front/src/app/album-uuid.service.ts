@@ -11,7 +11,7 @@ import { ApiService } from "./api.service";
 })
 export class AlbumUuidService {
 
-  private albums_uuidUrl = join(endpoint, 'api', 'album-uuid')
+  private albums_uuidUrl = join(endpoint, 'api', 'album-uuid');
 
   constructor(
     private api: ApiService
