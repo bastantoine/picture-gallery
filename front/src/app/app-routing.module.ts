@@ -9,7 +9,8 @@ import { PictureComponent } from "./picture/picture.component";
 const routes: Routes = [
   { path: 'home', component: AlbumsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'album/:id', component: AlbumDetailComponent },
+  { path: 'album/:id', component: AlbumDetailComponent, data: { type: 'id' } },
+  { path: 'album/u/:uuid', component: AlbumDetailComponent, data: { type: 'uuid' } },
   { path: 'picture/:id', component: PictureComponent },
   { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
