@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { PictureService } from "../pictures.service";
 import { AlbumsService } from "../albums.service";
 import { ExifsService } from "../exifs.service";
+import { PictureUUIDService } from "../picture-uuid.service";
 import { Picture, Exifs } from "../models";
 
 @Component({
@@ -16,40 +17,62 @@ export class PictureComponent implements OnInit {
   picture: Picture;
   exifs: Exifs;
   albumName: string;
+  id: number;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private pictureService: PictureService,
     private albumService: AlbumsService,
-    private exifsService: ExifsService
+    private exifsService: ExifsService,
+    private pictureUUIDService: PictureUUIDService
   ) { }
 
   ngOnInit(): void {
-    this.picture = new Picture(-1, '', -1);
+    this.id = -1
+    this.picture = new Picture(this.id, '', -1);
     this.albumName = '';
-    let id = +this.route.snapshot.paramMap.get('id');
-    this.getPicture(id);
-    this.getExifs(id);
+    this.getPicture();
   }
 
-  getPicture(id: number): void {
-    this.pictureService.getPictureById(id)
+  getPicture(): void {
+    let routeType = this.route.snapshot.data.type; // Either 'id' or 'uuid'
+    if(routeType === 'uuid') {
+      let uuid = this.route.snapshot.paramMap.get('uuid');
+      this.pictureUUIDService.getPictureFromUUID(uuid)
       .subscribe(
         picture => {
           this.picture = new Picture(
             picture['id'],
             picture['path'],
             picture['album']
+            );
+            this.id = this.picture.id;
+            this.getAlbumName();
+            this.getExifs();
+          },
+          () => this.router.navigate(['/not-found'])
           );
-          this.getAlbumName();
-        },
-        () => this.router.navigate(['/not-found'])
-      );
+    } else {
+      this.id = +this.route.snapshot.paramMap.get('id');
+      this.pictureService.getPictureById(this.id)
+        .subscribe(
+          picture => {
+            this.picture = new Picture(
+              picture['id'],
+              picture['path'],
+              picture['album']
+            );
+            this.getAlbumName();
+            this.getExifs();
+          },
+          () => this.router.navigate(['/not-found'])
+        );
+    }
   }
 
-  getExifs(id: number): void {
-    this.exifsService.getExifsOfPicture(id)
+  getExifs(): void {
+    this.exifsService.getExifsOfPicture(this.id)
       .subscribe(
         exifs => this.exifs = new Exifs(
           exifs['camera_constructor'],
