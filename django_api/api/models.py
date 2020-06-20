@@ -33,3 +33,9 @@ class Picture(models.Model):
                               on_delete=models.CASCADE,
                               related_name='pictures'
                              )
+
+
+class PictureUUID(models.Model):
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    picture = models.ForeignKey(Picture, on_delete=models.CASCADE)

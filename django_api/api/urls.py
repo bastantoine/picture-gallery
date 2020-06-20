@@ -5,7 +5,8 @@ from api.views import (
     AlbumViewSet,
     PictureViewSet,
     ExifsView,
-    AlbumUUIDView
+    AlbumUUIDView,
+    PictureUUIDView
 )
 
 ROUTER = routers.SimpleRouter()
@@ -17,4 +18,6 @@ urlpatterns += [
     path('exifs/<int:id_picture>', ExifsView.as_view()),
     path('album-uuid/<int:id_album>', AlbumUUIDView.as_view()),
     path('album-uuid/<uuid:uuid>', AlbumUUIDView.as_view()),
+    path('picture-uuid/<int:id_picture>', PictureUUIDView.as_view()),
+    path('picture-uuid/<uuid:uuid>', PictureUUIDView.as_view()),
 ]
