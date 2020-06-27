@@ -5,6 +5,7 @@ import { AlbumsComponent } from "./albums/albums.component";
 import { AlbumDetailComponent } from "./album-detail/album-detail.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { PictureComponent } from "./picture/picture.component";
+import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
   { path: 'home', component: AlbumsComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'album/u/:uuid', component: AlbumDetailComponent, data: { type: 'uuid' } },
   { path: 'picture/:id', component: PictureComponent, data: { type: 'id' } },
   { path: 'picture/u/:uuid', component: PictureComponent, data: { type: 'uuid' } },
+  { path: 'login', component: LoginComponent },
   { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
