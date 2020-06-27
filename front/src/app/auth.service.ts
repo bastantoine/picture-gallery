@@ -35,6 +35,10 @@ export class AuthService {
       ));
   }
 
+  isLoggedIn(): boolean {
+    return (localStorage.getItem('access') !== null);
+  }
+
 }
 
 interface TokenResult {
