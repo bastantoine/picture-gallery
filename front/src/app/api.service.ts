@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 
@@ -17,9 +17,15 @@ export class ApiService {
     return this.http.get<T>(_endpoint).pipe(
       catchError(this.handleError)
     );
-}
+  }
 
-private handleError(error: HttpErrorResponse) {
+  post<T>(endpoint: string, body: {}, options?: {headers: HttpHeaders}): Observable<T> {
+    return this.http.post<T>(endpoint, body, options).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -32,6 +38,6 @@ private handleError(error: HttpErrorResponse) {
     }
     return throwError(
       'Something bad happened; please try again later.');
-};
+  };
 
 }
