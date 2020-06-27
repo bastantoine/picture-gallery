@@ -39,6 +39,13 @@ export class AuthService {
     return (localStorage.getItem('access') !== null);
   }
 
+  getAccessToken(): string {
+    if(this.isLoggedIn()) {
+      return localStorage.getItem('access');
+    }
+    return '';
+  }
+
 }
 
 interface TokenResult {
