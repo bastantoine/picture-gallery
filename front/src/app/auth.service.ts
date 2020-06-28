@@ -17,6 +17,9 @@ export class AuthService {
 
   constructor(private api: ApiService) {
     this.isLoggedInSubject = new BehaviorSubject<boolean>(false);
+    if(this.isLoggedIn) {
+      this.refreshAccessToken();
+    }
   }
 
   getTokens(user: User): Observable<boolean> {
