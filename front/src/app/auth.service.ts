@@ -12,7 +12,7 @@ import { User } from "./models";
 })
 export class AuthService {
 
-  private tokenApi = join(endpoint, 'api', 'token/');
+  private tokenApi = join(endpoint, 'api', 'token');
   private isLoggedInSubject: BehaviorSubject<boolean>;
 
   constructor(private api: ApiService) {
@@ -20,14 +20,15 @@ export class AuthService {
   }
 
   getTokens(user: User): Observable<boolean> {
-    return this.api.post<TokenResult>(this.tokenApi, user)
+    return this.api.post<TokenResult>(join(this.tokenApi, '/'), user)
       .pipe(map(
         (tokens) => {
           let status = false;
           if(tokens !== undefined) {
             status = true;
-            localStorage.setItem('access', tokens.access);
-            localStorage.setItem('refresh', tokens.refresh);
+            localStorage.setItem(TokenNames.ACCESS, tokens.access);
+            localStorage.setItem(TokenNames.REFRESH, tokens.refresh);
+            this.startRefreshTokenTimer()
           }
           this.isLoggedInSubject.next(status);
           return status
@@ -36,14 +37,38 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return (localStorage.getItem('access') !== null);
+    return (localStorage.getItem(TokenNames.ACCESS) !== null);
   }
 
   getAccessToken(): string {
     if(this.isLoggedIn()) {
-      return localStorage.getItem('access');
+      return localStorage.getItem(TokenNames.ACCESS);
     }
     return '';
+  }
+
+  private refreshAccessToken(): void {
+    if(localStorage.getItem(TokenNames.REFRESH) !== null) {
+      this.api.post<TokenResult>(join(this.tokenApi, 'refresh/'), {'refresh': localStorage.getItem(TokenNames.REFRESH)})
+        .subscribe(
+          tokens => {
+            localStorage.setItem(TokenNames.ACCESS, tokens.access);
+            this.startRefreshTokenTimer()
+          }
+        )
+    }
+  }
+
+  private refreshTokenTimeout;
+
+  private startRefreshTokenTimer() {
+      // parse json object from base64 encoded jwt token
+      const jwtToken = JSON.parse(atob(localStorage.getItem(TokenNames.ACCESS).split('.')[1]));
+
+      // set a timeout to refresh the token a minute before it expires
+      const expires = new Date(jwtToken.exp * 1000);
+      const timeout = expires.getTime() - Date.now() - (60 * 1000);
+      this.refreshTokenTimeout = setTimeout(() => this.refreshAccessToken(), timeout);
   }
 
 }
@@ -51,4 +76,9 @@ export class AuthService {
 interface TokenResult {
   access: string;
   refresh: string;
+}
+
+enum TokenNames {
+  ACCESS = 'access',
+  REFRESH = 'refresh'
 }
