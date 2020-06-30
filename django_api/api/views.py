@@ -17,13 +17,22 @@ from api.serializers import (
     AlbumSerializer,
     PictureSerializer,
 )
+from api.authentication import Authentication
 
 
 # pylint: disable=too-many-ancestors
 class AlbumViewSet(viewsets.ModelViewSet):
 
+    authentication_classes = [Authentication]
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            # User is not authenticated, we should display him only the non protected albums
+            return Album.objects.filter(is_protected=False)
+        return Album.objects.all()
 
 
 # pylint: disable=too-many-ancestors
