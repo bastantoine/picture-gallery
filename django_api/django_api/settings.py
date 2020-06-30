@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from datetime import timedelta
 
 # pylint: disable=unused-import
 from django_api.private_settings import (
@@ -46,6 +47,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders'
 ]
+
+SIMPLE_JWT = {}
+
+if DEBUG:
+    SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'] = timedelta(minutes=30)
+else:
+    SIMPLE_JWT['ACCESS_TOKEN_LIFETIME'] = timedelta(minutes=5)
 
 # corsheaders : App from https://github.com/adamchainz/django-cors-headers,
 # allows to add Cross-Origin Resource Sharing (CORS) headers to responses, to
