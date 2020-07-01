@@ -1,3 +1,5 @@
+name: "Pylint runner"
+
 on:
   push:
     branches: [ master ]
@@ -25,8 +27,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    
+
     - name: Lint with pylint
       run: |
-        cd django_api/api
-        pylint --rcfile=.pylintrc ./*
+        cd django_api
+        python lint.py --path ./api/ --threshold 9 --rcfile api/.pylintrc
