@@ -4,6 +4,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 from api.views import (
     AlbumViewSet,
+    AlbumViewSetNotAuth,
     PictureViewSet,
     ExifsView,
     AlbumUUIDView,
@@ -29,4 +30,12 @@ urlpatterns += [
          jwt_views.TokenRefreshView.as_view(),
          name='token_refresh'
         ),
+]
+
+# Urls used only internally
+urlpatterns += [
+    path('p/album-detail-no-auth/<int:pk>',
+         AlbumViewSetNotAuth.as_view({'get': 'retrieve'}),
+         name='private_album_detail_no_auth'
+        )
 ]
