@@ -1,23 +1,12 @@
-from django.http import JsonResponse
-from django.views import View
-from django.shortcuts import (
-    get_object_or_404,
-    redirect
-)
 import exifread
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
+from django.views import View
 from rest_framework import viewsets
 
-from api.models import (
-    Album,
-    Picture,
-    AlbumUUID,
-    PictureUUID
-)
-from api.serializers import (
-    AlbumSerializer,
-    PictureSerializer,
-)
-from api.authentication import Authentication
+from django_api.api.authentication import Authentication
+from django_api.api.models import Album, AlbumUUID, Picture, PictureUUID
+from django_api.api.serializers import AlbumSerializer, PictureSerializer
 
 
 # pylint: disable=too-many-ancestors
