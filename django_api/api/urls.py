@@ -2,7 +2,7 @@ from django.urls import path
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
-from django_api.api.views import (AlbumUUIDView, AlbumViewSet,
+from .views import (AlbumUUIDView, AlbumViewSet,
                                   AlbumViewSetNotAuth, ExifsView,
                                   PictureUUIDView, PictureViewSet)
 

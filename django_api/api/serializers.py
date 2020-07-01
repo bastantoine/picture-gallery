@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from django_api.api.models import Album, Picture
+from .models import Album, Picture
 
 
 class PictureSerializer(serializers.ModelSerializer):

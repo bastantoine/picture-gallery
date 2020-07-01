@@ -4,9 +4,9 @@ from django.shortcuts import get_object_or_404, redirect
 from django.views import View
 from rest_framework import viewsets
 
-from django_api.api.authentication import Authentication
-from django_api.api.models import Album, AlbumUUID, Picture, PictureUUID
-from django_api.api.serializers import AlbumSerializer, PictureSerializer
+from .authentication import Authentication
+from .models import Album, AlbumUUID, Picture, PictureUUID
+from .serializers import AlbumSerializer, PictureSerializer
 
 
 # pylint: disable=too-many-ancestors
