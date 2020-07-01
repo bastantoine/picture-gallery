@@ -12,7 +12,7 @@ class Authentication(JWTAuthentication):
         try:
             # First try the basic JWT authentication
             return super().authenticate(request)
-        except TokenError as tokenError:
+        except TokenError:
             # The authentication as raised a TokenError, this means that either
             # the token was invalid, expired or not safe to use. We should see
             # if we can still allow access to the data
