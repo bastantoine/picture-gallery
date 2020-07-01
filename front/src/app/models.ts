@@ -144,3 +144,11 @@ export class PictureUUID {
         this.uuid = uuid;
     }
 }
+
+export class User {
+
+    constructor(
+        public username: string,
+        public password: string
+    ) { }
+}

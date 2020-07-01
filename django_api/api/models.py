@@ -14,6 +14,7 @@ class Album(models.Model):
                                      blank=True,
                                      on_delete=models.CASCADE
                                     )
+    is_protected = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
