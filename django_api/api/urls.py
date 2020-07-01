@@ -2,9 +2,8 @@ from django.urls import path
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
-from .views import (AlbumUUIDView, AlbumViewSet,
-                                  AlbumViewSetNotAuth, ExifsView,
-                                  PictureUUIDView, PictureViewSet)
+from .views import (AlbumUUIDView, AlbumViewSet, AlbumViewSetNotAuth,
+                    ExifsView, PictureUUIDView, PictureViewSet)
 
 ROUTER = routers.SimpleRouter()
 ROUTER.register(r'albums', AlbumViewSet)
