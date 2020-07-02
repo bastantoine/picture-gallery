@@ -1,3 +1,11 @@
 django_api/private_settings.py
+
+# DB file
 db.sqlite3
+
+# Migration files
 **/migrations/*
+
+# virtual envs
+*venv*/**
+start.sh
