@@ -11,11 +11,11 @@ ROUTER.register(r'pictures', PictureViewSet)
 urlpatterns = ROUTER.urls
 
 urlpatterns += [
-    path('exifs/<int:id_picture>', ExifsView.as_view()),
-    path('album-uuid/<int:id_album>', AlbumUUIDView.as_view()),
-    path('album-uuid/<uuid:uuid>', AlbumUUIDView.as_view()),
-    path('picture-uuid/<int:id_picture>', PictureUUIDView.as_view()),
-    path('picture-uuid/<uuid:uuid>', PictureUUIDView.as_view()),
+    path('exifs/<int:id_picture>', ExifsView.as_view(), name='exifs_view'),
+    path('album-uuid/<int:id_album>', AlbumUUIDView.as_view(), name='album_uuid_view'),
+    path('album-uuid/<uuid:uuid>', AlbumUUIDView.as_view(), name='album_uuid_view'),
+    path('picture-uuid/<int:id_picture>', PictureUUIDView.as_view(), name='picture_uuid_view'),
+    path('picture-uuid/<uuid:uuid>', PictureUUIDView.as_view(), name='picture_uuid_view'),
     path('token/',
          jwt_views.TokenObtainPairView.as_view(),
          name='token_obtain_pair'
