@@ -2,9 +2,15 @@ name: "Pylint runner"
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master ],
+    path:
+      # Run pylint only if there's a file of API that's modified
+      - django_api/api/*.py
   pull_request:
     branches: [ master ]
+    path:
+      # Run pylint only if there's a file of API that's modified
+      - django_api/api/*.py
 
 jobs:
   build:
