@@ -14,7 +14,7 @@ import os
 from datetime import timedelta
 
 # pylint: disable=unused-import
-from django_api.private_settings import (
+from .private_settings import (
     SECRET_KEY,
     ALLOWED_HOSTS,
     CORS_ORIGIN_WHITELIST,
