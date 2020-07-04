@@ -8,6 +8,9 @@ COPY requirements.txt /
 # Install dependencies.
 RUN pip install -r /requirements.txt
 
+# Make sure there's a folder for the media files
+RUN mkdir /media
+
 # Set work directory.
 RUN mkdir /code
 WORKDIR /code
