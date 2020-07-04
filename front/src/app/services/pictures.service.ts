@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { Picture } from "./models";
-import { endpoint } from "./api-config";
-import { join } from "./utils";
+import { Picture } from "../models";
+import { endpoint } from "../api-config";
+import { join } from "../utils";
 import { ApiService } from "./api.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class PictureService {
+export class PicturesService {
 
   private pictureUrl = join(endpoint, 'api', 'pictures')
 

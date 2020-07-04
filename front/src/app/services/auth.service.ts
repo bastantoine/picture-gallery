@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { endpoint } from "./api-config";
-import { join } from "./utils";
+import { endpoint } from "../api-config";
+import { join } from "../utils";
 import { ApiService } from "./api.service";
-import { User } from "./models";
+import { User } from "../models";
 
 @Injectable({
   providedIn: 'root'

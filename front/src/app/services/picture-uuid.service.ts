@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { PictureUUID, Picture } from "./models";
-import { endpoint } from "./api-config";
-import { join } from "./utils";
+import { PictureUUID, Picture } from "../models";
+import { endpoint } from "../api-config";
+import { join } from "../utils";
 import { ApiService } from "./api.service";
 
 @Injectable({
