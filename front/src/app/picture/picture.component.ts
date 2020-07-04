@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { PictureService } from "../pictures.service";
-import { AlbumsService } from "../albums.service";
-import { ExifsService } from "../exifs.service";
-import { PictureUUIDService } from "../picture-uuid.service";
+import { PicturesService } from "../services/pictures.service";
+import { AlbumsService } from "../services/albums.service";
+import { ExifsService } from "../services/exifs.service";
+import { PictureUUIDService } from "../services/picture-uuid.service";
 import { Picture, Exifs } from "../models";
 
 @Component({
@@ -22,7 +22,7 @@ export class PictureComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private pictureService: PictureService,
+    private pictureService: PicturesService,
     private albumService: AlbumsService,
     private exifsService: ExifsService,
     private pictureUUIDService: PictureUUIDService

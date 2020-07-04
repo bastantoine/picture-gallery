@@ -2,17 +2,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { endpoint } from "./api-config";
-import { join } from "./utils";
 import { ApiService } from "./api.service";
-import { User } from "./models";
+import { User } from "../models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private tokenApi = join(endpoint, 'api', 'token');
+  private tokenApi = 'token';
   private isLoggedInSubject: BehaviorSubject<boolean>;
 
   constructor(private api: ApiService) {
@@ -23,7 +21,7 @@ export class AuthService {
   }
 
   getTokens(user: User): Observable<boolean> {
-    return this.api.post<TokenResult>(join(this.tokenApi, '/'), user)
+    return this.api.post<TokenResult>([this.tokenApi, '/'], user)
       .pipe(map(
         (tokens) => {
           let status = false;
@@ -52,7 +50,7 @@ export class AuthService {
 
   private refreshAccessToken(): void {
     if(localStorage.getItem(TokenNames.REFRESH) !== null) {
-      this.api.post<TokenResult>(join(this.tokenApi, 'refresh/'), {'refresh': localStorage.getItem(TokenNames.REFRESH)})
+      this.api.post<TokenResult>([this.tokenApi, 'refresh/'], {'refresh': localStorage.getItem(TokenNames.REFRESH)})
         .subscribe(
           tokens => {
             localStorage.setItem(TokenNames.ACCESS, tokens.access);

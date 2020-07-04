@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { AlbumUUID, Album } from "./models";
-import { endpoint } from "./api-config";
-import { join } from "./utils";
+import { AlbumUUID, Album } from "../models";
 import { ApiService } from "./api.service";
 
 @Injectable({
@@ -11,18 +9,18 @@ import { ApiService } from "./api.service";
 })
 export class AlbumUuidService {
 
-  private albums_uuidUrl = join(endpoint, 'api', 'album-uuid');
+  private albums_uuidUrl = 'album-uuid';
 
   constructor(
     private api: ApiService
   ) { }
 
   getUUIDFromAlbumId(id: number): Observable<AlbumUUID> {
-    return this.api.get<AlbumUUID>(join(this.albums_uuidUrl, id.toString()));
+    return this.api.get<AlbumUUID>(this.albums_uuidUrl, id);
   }
 
   getAlbumFromUUID(uuid: string): Observable<Album> {
-    return this.api.get<Album>(join(this.albums_uuidUrl, uuid));
+    return this.api.get<Album>([this.albums_uuidUrl, uuid]);
   }
 
 }

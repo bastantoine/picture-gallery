@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AnonymousUser
+from django.urls import reverse
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.exceptions import TokenError
 
@@ -17,7 +18,7 @@ class Authentication(JWTAuthentication):
             # the token was invalid, expired or not safe to use. We should see
             # if we can still allow access to the data
 
-            if request.path.endswith('/'):
+            if request.path == reverse('album-list'):
                 # The user wanted to access to api/albums/, a filter will be put
                 # later to show only the non-protected albums
                 return (AnonymousUser(), None)

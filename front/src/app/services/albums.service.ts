@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { Album } from "./models";
-import { endpoint } from "./api-config";
-import { join } from "./utils";
+import { Album } from "../models";
 import { ApiService } from "./api.service";
 
 @Injectable({
@@ -11,7 +9,7 @@ import { ApiService } from "./api.service";
 })
 export class AlbumsService {
 
-  private albumUrl = join(endpoint, 'api', 'albums');
+  private albumUrl = 'albums';
 
   constructor(
     private api: ApiService) { }
