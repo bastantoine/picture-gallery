@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  front:
+    container_name: front
+    build: front/.
+    volumes:
+      - ./front/.:/app
+    ports:
+      - 4200:4200
+  api:
+    container_name: api
+    build: django_api/.
+    volumes:
+      - ./django_api/.:/code
+    ports:
+      - "8080:8080"
