@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { endpoint } from "../api-config";
-import { join } from "../utils";
 import { ApiService } from "./api.service";
 import { User } from "../models";
 
@@ -12,7 +10,7 @@ import { User } from "../models";
 })
 export class AuthService {
 
-  private tokenApi = join(endpoint, 'api', 'token');
+  private tokenApi = 'token';
   private isLoggedInSubject: BehaviorSubject<boolean>;
 
   constructor(private api: ApiService) {

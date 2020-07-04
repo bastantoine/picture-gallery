@@ -4,6 +4,8 @@ import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { isArray } from 'util';
 
+import { endpoint } from "../api-config";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,18 +27,24 @@ export class ApiService {
     return output.substring(1);
 }
 
-  get<T>(paths: string|string[], id?: number): Observable<T> {
+  private prepare_endpoint(paths: string|string[], id?: number): string {
     let _paths = isArray(paths) ? paths : [paths];
+    if(_paths[0] !== endpoint) {
+      (_paths as string[]).unshift(endpoint);
+    }
     let _endpoint = this.join(...(_paths as string[]));
-    _endpoint = id ? this.join(_endpoint, id.toString()) : _endpoint;
+    return id ? this.join(_endpoint, id.toString()) : _endpoint;
+  }
+
+  get<T>(paths: string|string[], id?: number): Observable<T> {
+    let _endpoint = this.prepare_endpoint(paths, id);
     return this.http.get<T>(_endpoint).pipe(
       catchError(this.handleError)
     );
   }
 
   post<T>(paths: string|string[], body: {}, options?: {headers: HttpHeaders}): Observable<T> {
-    let _paths = isArray(paths) ? paths : [paths];
-    let _endpoint = this.join(...(_paths as string[]));
+    let _endpoint = this.prepare_endpoint(paths);
     return this.http.post<T>(_endpoint, body, options).pipe(
       catchError(this.handleError)
     );

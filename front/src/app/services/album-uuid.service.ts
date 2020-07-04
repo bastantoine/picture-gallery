@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
 import { AlbumUUID, Album } from "../models";
-import { endpoint } from "../api-config";
-import { join } from "../utils";
 import { ApiService } from "./api.service";
 
 @Injectable({
@@ -11,7 +9,7 @@ import { ApiService } from "./api.service";
 })
 export class AlbumUuidService {
 
-  private albums_uuidUrl = join(endpoint, 'api', 'album-uuid');
+  private albums_uuidUrl = 'album-uuid';
 
   constructor(
     private api: ApiService
