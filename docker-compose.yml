@@ -13,6 +13,6 @@ services:
     build: django_api/.
     volumes:
       - ./django_api/.:/code
-      - ./media/:/media
+      - ./media/:/media-gallery
     ports:
       - "8080:8080"

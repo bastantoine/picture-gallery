@@ -9,7 +9,7 @@ COPY requirements.txt /
 RUN pip install -r /requirements.txt
 
 # Make sure there's a folder for the media files
-RUN mkdir /media
+RUN mkdir /media-gallery
 
 # Set work directory.
 RUN mkdir /code
