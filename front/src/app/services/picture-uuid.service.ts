@@ -18,11 +18,11 @@ export class PictureUUIDService {
   ) { }
 
   getUUIDFromPictureId(id: number): Observable<PictureUUID> {
-    return this.api.get<PictureUUID>(join(this.picture_uuidUrl, id.toString()));
+    return this.api.get<PictureUUID>(this.picture_uuidUrl, id);
   }
 
   getPictureFromUUID(uuid: string): Observable<Picture> {
-    return this.api.get<Picture>(join(this.picture_uuidUrl, uuid));
+    return this.api.get<Picture>([this.picture_uuidUrl, uuid]);
   }
 
 }
