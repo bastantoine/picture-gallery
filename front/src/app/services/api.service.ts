@@ -23,6 +23,7 @@ export class ApiService {
             output = `${output}/${path}`;
         }
     })
+    output = output.endsWith('/') ? output : output + '/'
     // We need to remove the first character because that's a '/'
     return output.substring(1);
 }
