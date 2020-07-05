@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 
 import { User } from "../models";
-import { AuthService } from "../services/auth.service";
+import { AuthService, isLoggedIn } from "../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn()) {
+    if(isLoggedIn()) {
       this.router.navigate(['/home'])
     }
     this.user = new User('', '');

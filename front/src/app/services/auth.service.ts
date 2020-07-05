@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private api: ApiService) {
     this.isLoggedInSubject = new BehaviorSubject<boolean>(false);
-    if(this.isLoggedIn) {
+    if(isLoggedIn()) {
       this.refreshAccessToken();
     }
   }
@@ -35,17 +35,6 @@ export class AuthService {
           return status
         }
       ));
-  }
-
-  isLoggedIn(): boolean {
-    return (localStorage.getItem(TokenNames.ACCESS) !== null);
-  }
-
-  getAccessToken(): string {
-    if(this.isLoggedIn()) {
-      return localStorage.getItem(TokenNames.ACCESS);
-    }
-    return '';
   }
 
   private refreshAccessToken(): void {
@@ -82,4 +71,17 @@ interface TokenResult {
 enum TokenNames {
   ACCESS = 'access',
   REFRESH = 'refresh'
+}
+
+// These functions were extracted from the AuthService above because that causes cyclic dependecies error when injecting
+// the JWT access token in the API requests (see https://stackoverflow.com/a/51660201/10104112)
+export function isLoggedIn(): boolean {
+  return (localStorage.getItem(TokenNames.ACCESS) !== null);
+}
+
+export function getAccessToken(): string {
+  if(isLoggedIn()) {
+    return localStorage.getItem(TokenNames.ACCESS);
+  }
+  return '';
 }
