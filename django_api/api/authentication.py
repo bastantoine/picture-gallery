@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
 from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.exceptions import InvalidToken
 
 from .models import Album
 
@@ -13,7 +13,7 @@ class Authentication(JWTAuthentication):
         try:
             # First try the basic JWT authentication
             return super().authenticate(request)
-        except TokenError:
+        except InvalidToken:
             # The authentication as raised a TokenError, this means that either
             # the token was invalid, expired or not safe to use. We should see
             # if we can still allow access to the data
