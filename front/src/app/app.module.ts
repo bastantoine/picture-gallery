@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { PictureComponent } from './picture/picture.component';
 import { LoginComponent } from './login/login.component';
 import { JwtInterceptor } from "./jwt-interceptor";
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { JwtInterceptor } from "./jwt-interceptor";
     PageNotFoundComponent,
     PictureComponent,
     LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

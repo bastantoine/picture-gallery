@@ -85,3 +85,10 @@ export function getAccessToken(): string {
   }
   return '';
 }
+
+export function logout(): void {
+  if(isLoggedIn()) {
+    localStorage.removeItem(TokenNames.ACCESS);
+    localStorage.removeItem(TokenNames.REFRESH);
+  }
+}
