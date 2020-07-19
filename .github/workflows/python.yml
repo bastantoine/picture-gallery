@@ -33,9 +33,12 @@ jobs:
     needs: [python-setup]
     runs-on: ubuntu-latest
     steps:
-      - name: What does the dir contains?
+      - name: ls GITHUB_WORKSPACE
         run: |
-          ls -la $GITHUB_WORKSPACE | xargs echo
+          ls -a $GITHUB_WORKSPACE | xargs echo
+      - name: ls HOME
+        run: |
+          ls -a $HOME | xargs echo
 
   pylint:
     needs: python-setup
