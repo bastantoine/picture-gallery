@@ -39,6 +39,8 @@ jobs:
     steps:
     - name: Lint with pylint
       run: |
+        pwd
+        ls -la
         python lint.py --path ./api/ --threshold 9 --rcfile api/.pylintrc
 
   unittest:
@@ -47,4 +49,6 @@ jobs:
     steps:
     - name: Run unittests
       run: |
+        pwd
+        ls -la
         python manage.py test
