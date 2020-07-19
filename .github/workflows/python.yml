@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: $HOME/django_api
+        working-directory: $GITHUB_WORKSPACE/picture_gallery/django_api
     steps:
     - name: Lint with pylint
       run: |
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: $HOME/django_api
+        working-directory: $GITHUB_WORKSPACE/picture_gallery/django_api
     steps:
     - name: Run unittests
       run: |
