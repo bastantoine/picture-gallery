@@ -35,7 +35,7 @@ jobs:
     steps:
       - name: What does the dir contains?
         run: |
-          ls -la $GITHUB_WORKSPACE/picture_gallery/django_api | xargs echo
+          ls -la $GITHUB_WORKSPACE | xargs echo
 
   pylint:
     needs: python-setup
