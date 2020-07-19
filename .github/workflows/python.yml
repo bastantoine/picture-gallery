@@ -1,0 +1,50 @@
+name: "Python tests"
+
+on:
+  push:
+    branches: [ master ]
+    path:
+      # Run the jobs only if there's a file of API that's modified
+      - django_api/api/*.py
+  pull_request:
+    branches: [ master ]
+    path:
+      # Run the jobs only if there's a file of API that's modified
+      - django_api/api/*.py
+
+defaults:
+  run:
+    working-directory: django_api
+
+jobs:
+  python-setup:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.7.5
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+  pylint:
+    needs: python-setup
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lint with pylint
+      run: |
+        python lint.py --path ./api/ --threshold 9 --rcfile api/.pylintrc
+
+  unittest:
+    needs: python-setup
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run unittests
+      run: |
+        python manage.py test
