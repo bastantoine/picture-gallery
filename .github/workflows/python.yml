@@ -3,12 +3,12 @@ name: "Python tests"
 on:
   push:
     branches: [ master ]
-    path:
+    paths:
       # Run the jobs only if there's a file of API that's modified
       - django_api/api/*.py
   pull_request:
     branches: [ master ]
-    path:
+    paths:
       # Run the jobs only if there's a file of API that's modified
       - django_api/api/*.py
 
