@@ -35,6 +35,10 @@ jobs:
     needs: [python-setup]
     runs-on: ubuntu-latest
     steps:
+      - name: What's their values?
+        run: |
+          echo $HOME
+          echo $GITHUB_WORKSPACE
       - name: ls GITHUB_WORKSPACE
         run: |
           ls -a $GITHUB_WORKSPACE | xargs echo
