@@ -32,17 +32,21 @@ jobs:
   pylint:
     needs: python-setup
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: $HOME/django_api
     steps:
     - name: Lint with pylint
       run: |
-        cd $HOME/django_api
         python ./lint.py --path ./api/ --threshold 9 --rcfile api/.pylintrc
 
   unittest:
     needs: python-setup
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: $HOME/django_api
     steps:
     - name: Run unittests
       run: |
-        cd $HOME/django_api
         python ./manage.py test
