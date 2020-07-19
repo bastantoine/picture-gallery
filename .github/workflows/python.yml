@@ -18,6 +18,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        path: 'code'
 
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
@@ -36,6 +38,9 @@ jobs:
       - name: ls GITHUB_WORKSPACE
         run: |
           ls -a $GITHUB_WORKSPACE | xargs echo
+      - name: ls GITHUB_WORKSPACE/code
+        run: |
+          ls -a $GITHUB_WORKSPACE/code | xargs echo
       - name: ls HOME
         run: |
           ls -a $HOME | xargs echo
@@ -45,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: $GITHUB_WORKSPACE/picture_gallery/django_api
+        working-directory: $GITHUB_WORKSPACE/code
     steps:
     - name: Lint with pylint
       run: |
@@ -56,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: $GITHUB_WORKSPACE/picture_gallery/django_api
+        working-directory: $GITHUB_WORKSPACE/code
     steps:
     - name: Run unittests
       run: |
