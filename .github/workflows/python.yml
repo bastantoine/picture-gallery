@@ -20,6 +20,10 @@ jobs:
     - uses: actions/checkout@v2
       with:
         path: 'code'
+        
+    - name: Checkout the latest commit to have the code
+      run: |
+        /usr/bin/git checkout $GITHUB_SHA
 
     - name: Set up Python 3.7
       uses: actions/setup-python@v2
@@ -48,6 +52,9 @@ jobs:
       - name: ls HOME
         run: |
           ls -a $HOME | xargs echo
+      - name: echo GITHUB_SHA
+        run: |
+          echo $GITHUB_SHA
 
   pylint:
     needs: python-setup
