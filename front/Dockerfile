@@ -15,6 +15,7 @@ RUN npm install --verbose
 # Copy app files.
 COPY . /app
 
+# Port used to access the app in dev mode
 EXPOSE 4200
 
 CMD ["ng", "serve", "--host", "0.0.0.0", "--disableHostCheck"]
