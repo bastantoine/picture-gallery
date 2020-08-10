@@ -10,7 +10,7 @@ COPY package.json package-lock.json /app/
 RUN npm install -g @angular/cli
 
 # Install app dependencies.
-RUN npm install
+RUN npm install --verbose
 
 # Copy app files.
 COPY . /app
