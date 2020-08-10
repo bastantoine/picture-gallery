@@ -18,4 +18,7 @@ COPY . /app
 # Port used to access the app in dev mode
 EXPOSE 4200
 
+# Port used for the hot reloading
+EXPOSE 49153
+
 CMD ["ng", "serve", "--host", "0.0.0.0", "--disableHostCheck"]
