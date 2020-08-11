@@ -14,6 +14,9 @@ python manage.py makemigrations api
 echo "Apply database migrations"
 python manage.py migrate
 
+echo "Creating superuser account"
+python manage.py initadmin
+
 # Start server
 echo "Starting server"
 python manage.py runserver 0.0.0.0:8080

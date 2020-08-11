@@ -20,6 +20,7 @@ from .private_settings import (
     CORS_ORIGIN_WHITELIST,
     MEDIA_ROOT,
     MEDIA_URL,
+    ADMINS
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
