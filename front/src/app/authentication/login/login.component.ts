@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { first } from 'rxjs/operators';
 
-import { User } from "../models";
-import { AuthService, isLoggedIn } from "../services/auth.service";
+import { User } from "../../models";
+import { AuthService, isLoggedIn } from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         () => this.router.navigate(['/home']),
-        () => this.router.navigate(['login'])
+        () => this.router.navigate(['/login'])
       );
   }
 
