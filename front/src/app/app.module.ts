@@ -4,17 +4,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationModule } from "./authentication/authentication.module";
+import { PictureModule } from './picture/picture.module';
 import { AlbumModule } from './album/album.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PictureComponent } from './picture/picture.component';
 import { JwtInterceptor } from "./jwt-interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    PictureComponent,
   ],
   imports: [
     BrowserModule,
@@ -22,6 +21,7 @@ import { JwtInterceptor } from "./jwt-interceptor";
     HttpClientModule,
     AuthenticationModule,
     AlbumModule,
+    PictureModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }

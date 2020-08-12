@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
-import { PictureComponent } from "./picture/picture.component";
 
 const routes: Routes = [
   { 
@@ -13,10 +12,12 @@ const routes: Routes = [
     path: 'album',
     loadChildren: () => import('./album/album.module').then(m => m.AlbumModule)
   },
+  {
+    path: 'picture',
+    loadChildren: () => import('./picture/picture.module').then(m => m.PictureModule)
+  },
   { path: 'home', redirectTo: '/album/'},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'picture/:id', component: PictureComponent, data: { type: 'id' } },
-  { path: 'picture/u/:uuid', component: PictureComponent, data: { type: 'uuid' } },
   { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
