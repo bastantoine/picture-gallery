@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { PicturesService } from "../services/pictures.service";
-import { AlbumsService } from "../services/albums.service";
+import { AlbumsService } from "../album/services/albums.service";
 import { ExifsService } from "../services/exifs.service";
 import { PictureUUIDService } from "../services/picture-uuid.service";
 import { Picture, Exifs } from "../models";

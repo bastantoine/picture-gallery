@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { tap } from "rxjs/operators";
 
 import { Album } from "../../models";
-import { AlbumsService } from "../../services/albums.service";
-import { AlbumUuidService } from "../../services/album-uuid.service";
+import { AlbumsService } from "../services/albums.service";
+import { AlbumUuidService } from "../services/album-uuid.service";
 
 @Component({
   selector: 'app-album-detail',
