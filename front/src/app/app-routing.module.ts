@@ -16,8 +16,8 @@ const routes: Routes = [
     path: 'picture',
     loadChildren: () => import('./picture/picture.module').then(m => m.PictureModule)
   },
-  { path: 'home', redirectTo: '/album/'},
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', redirectTo: '/album', pathMatch: 'full'},
+  { path: '', redirectTo: '/album', pathMatch: 'full' },
   { path: 'not-found', component: PageNotFoundComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
