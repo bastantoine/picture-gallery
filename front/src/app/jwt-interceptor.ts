@@ -3,7 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable } from 'rxjs';
 
 import { endpoint } from "./api-config";
-import { getAccessToken, isLoggedIn } from "./services/auth.service";
+import { getAccessToken, isLoggedIn } from "./authentication/auth.service";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {

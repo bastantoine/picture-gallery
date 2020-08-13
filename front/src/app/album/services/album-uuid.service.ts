@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 
-import { AlbumUUID, Album } from "../models";
-import { ApiService } from "./api.service";
+import { AlbumUUID, Album } from "../../models";
+import { ApiService } from "../../services/api.service";
 
 @Injectable({
   providedIn: 'root'
