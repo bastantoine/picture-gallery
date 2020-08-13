@@ -17,7 +17,8 @@ export class ApiService {
     // Based on Python's os.path.join
     let output: string = '';
     paths.forEach(path => {
-        if(path.startsWith('/')) {
+      // Only add a middle / if needed  
+      if(path.startsWith('/') || output.endsWith('/')) {
             output = `${output}${path}`;
         } else {
             output = `${output}/${path}`;
